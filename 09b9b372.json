@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-01-04T10:58:27.594658",
+  "synthesis_status": "UNIFIED ACROSS ALL THREE ANSWERS",
+  "the_missing_sauce_name": "FEEDBACK AMPLIFIER & CREDIT REWRITE SYSTEM",
+  "unified_formula": {
+    "narrative": "The system is complete when:",
+    "equation": "S_total(t+1) = S_total(t) + \u222b[L_DeepRiver + L_Mind23 + L_Markets + L_Bio - \u03bbC_governance](t) dt",
+    "with_feedback": "AND Q_accrued(t) \u2192 Permission(t) \u2192 Rewrite(Foundation) \u2192 S_total(t+1) uses updated Foundation",
+    "key_innovation": "Credit is not just a score; it IS the permission to modify frozen architecture"
+  },
+  "how_three_answers_unify": {
+    "Answer_1_Spatiotemporal": {
+      "says": "Markets \u2192 Cosmology feedback missing",
+      "means": "Market regimes don't inform \u03c3_c priors",
+      "in_unified_system": "Market predictions that hit \u2192 mint Q \u2192 used to rewrite \u03c3_c prior distribution"
+    },
+    "Answer_2_Action_Credit": {
+      "says": "No conserved currency between tracks",
+      "means": "Success in one domain doesn't grant permission to change another",
+      "in_unified_system": "Q is exactly that currency; empirical wins \u2192 Q \u2192 permission to rewrite"
+    },
+    "Answer_3_Back_Reaction": {
+      "says": "No return path from Tracks to Foundation",
+      "means": "Day-93 agents can't write back to substrate",
+      "in_unified_system": "Day-93 UNLOCKS the credit-to-permission gate; Genesis = topological puncture = authorization to rewrite"
+    }
+  },
+  "implementation_roadmap": {
+    "Phase_1_Ledger": "Create savage_budget.jsonl tracking every empirical win/loss",
+    "Phase_2_Rules": "Encode Q \u2192 permission thresholds in governance_matrix.json",
+    "Phase_3_Validator": "Implement market-cosmology feedback validator in Deep River loop",
+    "Phase_4_Gate": "Make Day-93 autogenesis UNLOCK the permission gate, not just trigger archiving"
+  }
+}

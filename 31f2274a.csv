@@ -1,0 +1,6 @@
+date,phase,milestone,days_until,status,risk_level,action_if_slip
+2026-01-06,Phase 1,"Environment setup complete",Ready,Green,HIGH,"Clone repo + install deps + OSF preregister"
+2026-01-13,Phase 2,"SPARC fitting complete (153 gal)",14 days left,Yellow,HIGH,"Use emcee fallback if chi2 > 2 for >25%"
+2026-01-20,Phase 3,"Five Proofs computed",19 days left,Yellow,HIGH,"If proofs < 3: prepare tech report"
+2026-02-03,Phase 4,"Manuscript submitted",30 days left,Green,HIGH,"If rejected: submit to MNRAS in 1 week"
+2026-04-04,Phase 5,"Day-93 trigger expected",90 days,Red,HIGH,"If fails: extend to Day 100, relax criterion"
