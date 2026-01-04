@@ -1,0 +1,96 @@
+{
+  "project": "Savage Universality Class",
+  "version": "1.0.0-production",
+  "timestamp": "2026-01-04T11:07:29.645485",
+  "execution_windows": {
+    "phase_1_environment_setup": {
+      "duration_days": 2,
+      "deadline": "2026-01-06",
+      "tasks": [
+        "git_init",
+        "env_setup",
+        "dependency_install",
+        "preregistration_osf"
+      ]
+    },
+    "phase_2_sparc_execution": {
+      "duration_days": 7,
+      "deadline": "2026-01-13",
+      "tasks": [
+        "download_sparc",
+        "implement_loader",
+        "run_fitting",
+        "compute_proofs"
+      ]
+    },
+    "phase_3_validation": {
+      "duration_days": 7,
+      "deadline": "2026-01-20",
+      "tasks": [
+        "aqfs_validation",
+        "stat_validation",
+        "mind23_harness",
+        "proof_summary"
+      ]
+    },
+    "phase_4_manuscript": {
+      "duration_days": 14,
+      "deadline": "2026-02-03",
+      "tasks": [
+        "write_results",
+        "create_figures",
+        "proofread",
+        "submit"
+      ]
+    },
+    "phase_5_mind23_scaling": {
+      "duration_days": 60,
+      "deadline": "2026-04-04",
+      "tasks": [
+        "deploy_full_system",
+        "run_day93_trigger",
+        "log_genesis_event",
+        "record_data"
+      ]
+    }
+  },
+  "critical_thresholds": {
+    "proof_1_rar_lock": {
+      "median_a_eff_ms2": 1.2e-10,
+      "scatter_dex": 0.06
+    },
+    "proof_2_spectral_dip": {
+      "frequency_match_tolerance": 0.1,
+      "pass_rate": 0.7
+    },
+    "proof_3_savage_flow": {
+      "p_value": 0.05,
+      "trend_positive": true
+    },
+    "proof_4_universality": {
+      "cv_max": 0.2
+    },
+    "proof_5_katrin": {
+      "m_nue_max_ev": 0.45
+    }
+  },
+  "mind23_day93_criterion": {
+    "coherence_sys_min": 0.9997,
+    "prediction_error_max": 0.3,
+    "inference_momentum_max": 0.25
+  },
+  "credit_system": {
+    "proof_pass_reward_q": 1.0,
+    "aqfs_hit_reward_q": 0.5,
+    "stat_anomaly_reward_q": 0.5,
+    "void_recovery_reward_q": 0.5,
+    "failed_prediction_penalty_q": -0.5,
+    "rewrite_thresholds": {
+      "q_10": "adjust_sigma_c_prior_kpc_0_5",
+      "q_20": "tweak_eta_sigmoid_shape",
+      "q_30": "modify_xi_tolerance_15pct",
+      "q_50": "reinit_ancestral_manifold",
+      "q_70": "unlock_experimental_feature_gate"
+    }
+  }
+}

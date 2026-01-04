@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-01-04T11:09:14.111051",
+  "summary": {
+    "total_tests": 9,
+    "passed": 8,
+    "failed": 1,
+    "errors": 0,
+    "pass_rate": 88.88888888888889,
+    "duration_seconds": 0.002619,
+    "failures": [
+      [
+        "test_deep_river_fitting",
+        ""
+      ]
+    ]
+  },
+  "tests": [
+    {
+      "name": "test_savage_kernel_initialization",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.107559"
+    },
+    {
+      "name": "test_savage_kernel_bounds",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.107663"
+    },
+    {
+      "name": "test_deep_river_fitting",
+      "status": "FAIL",
+      "timestamp": "2026-01-04T11:09:14.108075"
+    },
+    {
+      "name": "test_cpm_initialization",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.108616"
+    },
+    {
+      "name": "test_crucible_auction",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.108686"
+    },
+    {
+      "name": "test_adaptive_autogenesis_loop",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.108733"
+    },
+    {
+      "name": "test_credit_ledger",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.109214"
+    },
+    {
+      "name": "test_rewrite_authority",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.109264"
+    },
+    {
+      "name": "test_market_validator",
+      "status": "PASS",
+      "timestamp": "2026-01-04T11:09:14.109299"
+    }
+  ]
+}

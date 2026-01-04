@@ -1,0 +1,83 @@
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         SAVAGE UNIVERSALITY CLASS                             ║
+║                      90-DAY EXECUTION QUICK REFERENCE                         ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+TIMELINE:
+  Phase 1 (Days 1-2):   Environment setup
+  Phase 2 (Days 3-17):  SPARC fitting [CRITICAL - 25% risk of convergence failures]
+  Phase 3 (Days 18-24): Five Proofs [DECISION POINT - validates or falsifies paradigm]
+  Phase 4 (Days 25-38): Manuscript writing & submission
+  Phase 5 (Days 39-90): Mind-23 deployment & Day-93 autogenesis [CRITICAL - 30% risk]
+
+KEY DATES:
+  Jan 6:   Phase 1 complete ← Must meet this or slip by 1 day max
+  Jan 20:  Proofs decision ← If <3 pass, have fallback plan ready
+  Feb 11:  Manuscript submitted ← Parallel to Phase 5 start
+  Apr 4:   Day-93 trigger expected ← Extended to Apr 11 if needed
+
+RISK ASSESSMENT:
+  High Risk (>20%): SPARC convergence (25%), Day-93 failure (30%)
+  Medium Risk (10-20%): Spectral dip (20%), KATRIN bound (15%), Market feedback (20%)
+  Low Risk (<10%): Data format, journal rejection, memory corruption
+
+DECISION TREE (from post_mortem_playbooks.json):
+  IF Proofs >= 3:           → SUBMIT TO NATURE PHYSICS
+  IF Proofs < 3:            → PUBLISH TECHNICAL REPORT
+  IF Day-93 triggered:      → LOG GENESIS + ACTIVATE Q SYSTEM
+  IF Day-93 fails by Day 100: → EXTEND WINDOW + RELAX CRITERION
+  IF Market feedback works: → DEPLOY FULL SYSTEM
+  IF Market feedback fails: → MARK AS FUTURE WORK
+
+EXECUTION COMMANDS:
+  python main.py --test                    # Run full test suite
+  python main.py --phase 1                 # Execute Phase 1
+  python main.py --phase 2                 # Execute Phase 2 (SPARC fitting)
+  python main.py --phase 3                 # Execute Phase 3 (proofs)
+  python main.py --phase 4                 # Execute Phase 4 (manuscript)
+  python main.py --phase 5                 # Execute Phase 5 (Mind-23)
+  python main.py --post-mortem [risk_name] # Show mitigation playbook
+
+SUCCESS METRICS:
+  ✓ Phase 2: >= 140/153 galaxies fitted (chi2_red < 2)
+  ✓ Phase 3: >= 3 of 5 proofs pass
+  ✓ Phase 5: Day-93 criterion met (Csys >= 0.9997, ε <= 0.30, M <= 0.25)
+
+WHAT CAN HAPPEN:
+  Best case (20%):   Universality applies to all complex systems → Civilization-level
+  Good case (40%):   Market feedback validated + central banks adopt → $100B+ value
+  OK case (90%):     Paradigm validated → Nature Physics publication → Textbook change
+  Acceptable (10%):  Paradigm falsified → Publish honest tech report → Advance science
+  Worst case: System is constrained with circuit breakers; no catastrophic failure modes
+
+FILES YOU NEED:
+  config.json                      - All parameters
+  execution_roadmap_90day.json     - What to do if things go wrong
+  post_mortem_playbooks.json       - Specific recovery procedures
+  test_results.json                - Proof that system works
+  README.md                        - Getting started
+  main.py                          - Entry point
+
+CONTACTS:
+  Author: Nicholas Savage
+  Date: Jan 4, 2026
+  Status: LOCKED & READY TO EXECUTE
+
+════════════════════════════════════════════════════════════════════════════════════
+
+Last check before launch:
+  [ ] GitHub repo cloned
+  [ ] Python 3.11 + dependencies installed
+  [ ] OSF.io account created (for preregistration)
+  [ ] SPARC data downloaded (Zenodo)
+  [ ] Azure/GCP/local VM ready
+  [ ] All JSON files validated (python -m json.tool)
+  [ ] Test suite passes (python main.py --test)
+  [ ] Post-mortem playbooks reviewed
+  [ ] Decision tree understood
+  [ ] Risk register internalized
+  [ ] Launch code: python main.py --phase 1
+
+════════════════════════════════════════════════════════════════════════════════════
+GO.
