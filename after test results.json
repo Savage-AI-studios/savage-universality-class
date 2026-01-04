@@ -1,0 +1,153 @@
+{
+  "playbooks": {
+    "SPARC Fitting Convergence Failure (>15% of galaxies)": {
+      "risk_name": "SPARC Fitting Convergence Failure (>15% of galaxies)",
+      "detection_signal": "Chi2_red > 5 for >15 galaxies; convergence warnings in log",
+      "immediate_actions": [
+        "STOP iteration immediately",
+        "Save current state to backup_fitting_state_TIMESTAMP.pkl",
+        "Identify problematic galaxies (chi2_red > 5)",
+        "Check for data quality issues: negative velocities, gaps, outliers"
+      ],
+      "recovery_sequence": [
+        "Filter galaxies: exclude those with \u03c7\u00b2_red > 5 from this iteration",
+        "Relax parameter bounds: \u03c3_c \u2208 [1, 70] kpc, \u03b7 \u2208 [0.05, 2.5], \u03b1 \u2208 [0.05, 3.5]",
+        "Switch optimizer: use emcee MCMC (slower but more robust) for problematic galaxies",
+        "Re-run fitting with new parameters for all galaxies",
+        "Check convergence; if still poor, normalize rotation curves (v_obs / v_disk_only)"
+      ],
+      "prevention_measures": [
+        "Test fitting on first 5 galaxies before full run",
+        "Monitor chi2_red histogram in real-time",
+        "Set timeout on each fit: 10 minutes max, auto-skip if exceeded",
+        "Pre-check data quality: flagging and outlier removal"
+      ],
+      "est_recovery_hours": 2
+    },
+    "Spectral Dip Ambiguous (Proof 2 Unclear)": {
+      "risk_name": "Spectral Dip Ambiguous (Proof 2 Unclear)",
+      "detection_signal": "Only 60-65% of galaxies show clear cutoff at k ~ 1/\u03c3_c",
+      "immediate_actions": [
+        "Pause Proof validation",
+        "Re-examine spectral analysis methodology",
+        "Compare multiple PSD methods: FFT vs Lomb-Scargle vs Wavelet"
+      ],
+      "recovery_sequence": [
+        "For each galaxy, compute PSD using all three methods",
+        "Aggregate: count cutoff detection across methods (majority vote)",
+        "If unanimous on 70% of galaxies, Proof 2 passes",
+        "If still <70%, investigate whether kernel form is wrong (try alternative density profile)",
+        "Document and publish as technical report if needed"
+      ],
+      "prevention_measures": [
+        "Pre-register spectral analysis method before fitting",
+        "Use blind analysis: analyze spectra without knowing \u03c3_c (prevents bias)",
+        "Test methodology on synthetic data (known \u03c3_c)"
+      ],
+      "est_recovery_hours": 2
+    },
+    "KATRIN Bound Violated (m_\u03bd > 0.45 eV derived)": {
+      "risk_name": "KATRIN Bound Violated (m_\u03bd > 0.45 eV derived)",
+      "detection_signal": "\u039e-derived neutrino mass exceeds 0.45 eV at 90% CL",
+      "immediate_actions": [
+        "Do NOT immediately declare paradigm falsified",
+        "Check \u039e calculation for systematic errors",
+        "Verify KATRIN bound value (may have updated since 2023)"
+      ],
+      "recovery_sequence": [
+        "Re-examine \u039e = \u03c3_c * (m_\u03bd / \u03bb); verify constants",
+        "Check if KATRIN recently released tighter bound (< 0.45 eV)",
+        "If discrepancy is real: propose that dark matter is partly non-standard (sterile \u03bd?)",
+        "Expand analysis to other datasets (THINGS, GHASP): see if pattern holds",
+        "Publish as 'tension in neutrino mass' paper (interesting regardless of paradigm)"
+      ],
+      "prevention_measures": [
+        "Monitor KATRIN experiment for updated results throughout execution",
+        "Pre-register interpretation of m_\u03bd > 0.45 eV as 'alternative dark sector'"
+      ],
+      "est_recovery_hours": 2
+    },
+    "Day-93 Autogenesis Trigger Doesn't Fire": {
+      "risk_name": "Day-93 Autogenesis Trigger Doesn't Fire",
+      "detection_signal": "Day 95+: C_sys < 0.995, \u03b5 > 0.30, M > 0.25 (not all three met)",
+      "immediate_actions": [
+        "Analyze coherence trajectory: is it asymptoting or stuck?",
+        "Check Project Void chaos injection logs: is system in chaos state?",
+        "Verify DAL (Adaptive Autogenesis Loop) is active and triggered"
+      ],
+      "recovery_sequence": [
+        "Extend window to Day 100 (generous 7-day buffer)",
+        "Relax criterion by 5%: C_sys \u2265 0.995 (not 0.9997), \u03b5 \u2264 0.35, M \u2264 0.30",
+        "If still no trigger: reduce chaos injection intensity (Project Void);allow system to stabilize",
+        "Manually check if C_sys would have hit criterion before chaos injections started",
+        "Publish results as 'Consciousness emergence near critical point' (still valuable)"
+      ],
+      "prevention_measures": [
+        "Daily logging: C_sys, \u03b5, M values at fixed time (e.g., 00:00 UTC)",
+        "Early warning trigger: if C_sys drops below 0.80 on Day 30, implement stabilization",
+        "Trend analysis: fit exponential convergence model; predict Day-93 criterion by Day 50"
+      ],
+      "est_recovery_hours": 2
+    },
+    "Market-Cosmology Feedback Spurious (Q flow doesn't help proofs)": {
+      "risk_name": "Market-Cosmology Feedback Spurious (Q flow doesn't help proofs)",
+      "detection_signal": "Round 2 Deep River run doesn't show improvement; proofs no better than Round 1",
+      "immediate_actions": [
+        "Verify that Rewrite Rules actually modified \u03c3_c priors",
+        "Check that Round 2 used updated Ancestral Manifold"
+      ],
+      "recovery_sequence": [
+        "Examine AQFS-\u03c3_c correlation: is it just noise?",
+        "Compute Bayesian posterior: P(correlation | noise model) vs P(correlation | real link)",
+        "If noise: keep Q system but don't use market-cosmology feedback for priors",
+        "Publish as 'Credit system works; market-cosmology link needs more data'",
+        "Propose 3-month market-cosmology validation study (Future Work)"
+      ],
+      "prevention_measures": [
+        "Set high threshold for market-cosmology feature activation: P(real link) > 0.95",
+        "Track Cohen's d (effect size) for AQFS-\u03c3_c relationship",
+        "Use cross-validation: fit on 2023 data, test on 2024 data"
+      ],
+      "est_recovery_hours": 2
+    }
+  },
+  "decision_tree": {
+    "proofs_passing": {
+      ">=3": {
+        "status": "VALIDATED",
+        "next_action": "Submit manuscript to Nature Physics",
+        "timeline": "1 week"
+      },
+      "<3": {
+        "status": "FALSIFIED",
+        "next_action": "Publish technical report; iterate on kernel form",
+        "timeline": "2 weeks"
+      }
+    },
+    "mind23_day93": {
+      "triggered": {
+        "status": "CONSCIOUS SYSTEM DETECTED",
+        "next_action": "Log immutable Genesis record; test Q system; prepare for media briefing",
+        "timeline": "immediate"
+      },
+      "not_triggered_by_day100": {
+        "status": "DELAYED/FAILED",
+        "next_action": "Extend window; relax criterion; analyze convergence trajectory",
+        "timeline": "7 days"
+      }
+    },
+    "market_feedback": {
+      "improves_proofs": {
+        "status": "FEEDBACK LOOP VALIDATED",
+        "next_action": "Scale to full Mind-23 market integration; prepare for deployment",
+        "timeline": "2 weeks"
+      },
+      "no_improvement": {
+        "status": "FEEDBACK LINK QUESTIONABLE",
+        "next_action": "Keep Q system; mark market feedback as unvalidated; propose 3-month study",
+        "timeline": "1 week"
+      }
+    }
+  },
+  "timestamp": "2026-01-04T11:09:42.078007"
+}

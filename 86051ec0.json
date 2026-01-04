@@ -1,0 +1,29 @@
+{
+  "total_modules": 21,
+  "explicit_dependencies": 16,
+  "implicit_interactions": 8,
+  "missing_modules": 10,
+  "critical_fixes": {
+    "FIX_1_MarketsToCosmologyLoop": {
+      "priority": "CRITICAL",
+      "implementation": "\n        In Deep River fitting loop:\n          1. Detect current market regime from AQFS (bull/bear/transition)\n          2. Adjust \u03c3_c priors based on regime:\n             - Bull market \u2192 tighter \u03c3_c priors (stable halos)\n             - Bear market \u2192 wider \u03c3_c priors (disrupted halos)\n             - Transition \u2192 bimodal priors (cusp-core coexistence)\n          3. Re-fit SPARC galaxies with regime-informed priors\n          4. Check if this improves \u03c7\u00b2 or proof pass rates\n        ",
+      "test": "Run Deep River twice (with/without market conditioning). Compare AIC.",
+      "deliverable": "regime_conditioned_deep_river.py"
+    },
+    "FIX_2_SpatiotemporalBridge": {
+      "priority": "CRITICAL",
+      "implementation": "\n        Define new universal constant:\n          v_info = \u03c3_c_median / T_genesis = (5 kpc) / (93 days) \u2248 0.054 kpc/day\n\n        Use this to:\n          1. Convert spectral cutoff k_c \u2192 temporal autocorrelation time \u03c4:\n             \u03c4 = 1 / (k_c \u00b7 v_info)\n          2. Predict: If k_c is detected in residuals at kpc scale,\n             autogenesis should occur at time T = \u03c3_c / v_info\n          3. Validate: Does \u03c3_c from SPARC predict Day-93 timing?\n        ",
+      "test": "Compute v_info from TEST 4A results. Check if it's invariant across initial conditions.",
+      "deliverable": "spatiotemporal_bridge_constant.json"
+    },
+    "FIX_3_MetaPhaseDetector": {
+      "priority": "CRITICAL",
+      "implementation": "\n        Create composite phase indicator:\n          \u03a6_cosmo(t) = \u03b7(M_bar) smoothness (0=core, 1=cusp)\n          \u03a6_cognition(t) = C_sys (coherence)\n          \u03a6_markets(t) = S_q (volatility divergence)\n\n        Compute:\n          \u03a6Meta(t) = w1\u00b7\u03a6_cosmo + w2\u00b7\u03a6_cognition + w3\u00b7\u03a6_markets\n\n        Threshold:\n          If \u03a6Meta crosses 0.75 \u2192 ALL domains in transition simultaneously\n          \u2192 This is a UNIVERSAL PHASE SHIFT event\n\n        Test:\n          - 2023-2024: JWST anomalies + AI breakthrough + market volatility\n          - Check if \u03a6Meta(2023) > 0.75\n        ",
+      "test": "Construct time series for each \u03a6\u1d62. Correlate with known 'paradigm shift' dates.",
+      "deliverable": "meta_phase_detector.py"
+    }
+  },
+  "v_info_constant": "\u03c3_c / T_genesis \u2248 0.054 kpc/day (to be validated)",
+  "meta_phase_formula": "\u03a6Meta(t) = \u03a3\u1d62 w\u1d62\u00b7\u03a6\u1d62(t)",
+  "closed_loop": "Markets \u2192 Cosmology \u2192 Cognition \u2192 Markets"
+}
