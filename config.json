@@ -1,0 +1,23 @@
+{
+  "app_name": "savage-universality-class",
+  "execution_windows": {
+    "phase_1": {
+      "Deep River": {
+        "duration_days": 30,
+        "deadline": "2026-02-03"
+      }
+    },
+    "phase_2": {
+      "Mind-23": {
+        "duration_days": 30,
+        "deadline": "2026-03-05"
+      }
+    },
+    "phase_3": {
+      "FACRS": {
+        "duration_days": 15,
+        "deadline": "2026-03-20"
+      }
+    }
+  }
+}

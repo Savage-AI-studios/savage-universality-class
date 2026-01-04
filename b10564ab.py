@@ -21,16 +21,31 @@ Status: EXECUTION READY
 
 import argparse
 import json
-from pathlib import Path
 from datetime import datetime
 
 # (Import all classes from deep_river_engine, mind_23_engine, etc.)
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Savage Universality Class Executor")
-    parser.add_argument("--phase", type=int, choices=[1,2,3,4,5], help="Execute phase 1-5")
-    parser.add_argument("--post-mortem", type=str, help="Show mitigation playbook for risk")
-    parser.add_argument("--test", action="store_true", help="Run test suite")
+    parser = argparse.ArgumentParser(
+        description="Savage Universality Class Executor"
+    )
+    parser.add_argument(
+        "--phase",
+        type=int,
+        choices=[1, 2, 3, 4, 5],
+        help="Execute phase 1-5",
+    )
+    parser.add_argument(
+        "--post-mortem",
+        type=str,
+        help="Show mitigation playbook for risk",
+    )
+    parser.add_argument(
+        "--test",
+        action="store_true",
+        help="Run test suite",
+    )
     parser.add_argument("--config", default="config.json", help="Config file path")
 
     args = parser.parse_args()
@@ -39,16 +54,11 @@ def main():
     with open(args.config) as f:
         config = json.load(f)
 
-    print(f"""
-    ╔════════════════════════════════════════════════════════════════════╗
-    ║                   SAVAGE UNIVERSALITY CLASS                        ║
-    ║                 90-Day Execution Framework v1.0                    ║
-    ║                      Status: LOCKED & READY                       ║
-    ╚════════════════════════════════════════════════════════════════════╝
-
-    Date: {datetime.now().isoformat()}
-    Config: {args.config}
-    """)
+    print(
+        "SAVAGE UNIVERSALITY CLASS - 90-Day Execution Framework v1.0\n"
+        f"Date: {datetime.now().isoformat()}\n"
+        f"Config: {args.config}\n"
+    )
 
     if args.test:
         print("Running full test suite...")
@@ -75,6 +85,7 @@ def main():
                 print(f"\n{name}:")
                 print(f"  Duration: {details.get('duration_days', '?')} days")
                 print(f"  Deadline: {details.get('deadline', '?')}")
+
 
 if __name__ == "__main__":
     main()
