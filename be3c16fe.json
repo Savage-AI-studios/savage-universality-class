@@ -1,0 +1,253 @@
+{
+  "total_days": 90,
+  "start_date": "2026-01-04",
+  "end_date": "2026-04-04",
+  "phases": [
+    {
+      "name": "Phase 1: Environment Setup",
+      "start_day": 1,
+      "end_day": 2,
+      "duration_days": 1,
+      "tasks": [
+        "Clone GitHub repository",
+        "Create Python 3.11 venv",
+        "Install scipy, numpy, pandas, astropy, emcee",
+        "Register on OSF.io",
+        "Preregister hypotheses (RAR Lock, Flow, Universality)",
+        "Lock seed values in CONFIG.json"
+      ],
+      "success_criteria": {
+        "python_runs_without_error": true,
+        "dependencies_installed": true,
+        "osf_registration_locked": true,
+        "preregistration_doi": "10.17605/OSF.IO/XXXXX"
+      },
+      "risks": [
+        {
+          "phase": "Phase 1",
+          "probability_percent": 5,
+          "impact": "Environment not ready, delays start",
+          "mitigation": "Use Google Cloud Shell as fallback (no installation needed)",
+          "detection_trigger": "pip install fails after 3 attempts"
+        },
+        {
+          "phase": "Phase 1",
+          "probability_percent": 2,
+          "impact": "GitHub access issues",
+          "mitigation": "Use Codespaces or Cloud Shell to clone",
+          "detection_trigger": "git clone fails with auth error"
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: Deep River SPARC Fitting",
+      "start_day": 3,
+      "end_day": 17,
+      "duration_days": 14,
+      "tasks": [
+        "Download SPARC dataset (153 galaxies)",
+        "Implement SavageKernel fitting loop",
+        "Fit \u03c3_c, \u03b7, \u03b1 for each galaxy (multiprocessing recommended)",
+        "Export results to deepriver_results.csv",
+        "Compute aeff for each galaxy"
+      ],
+      "success_criteria": {
+        "galaxies_fitted": 153,
+        "successful_fits": ">= 140 (>91%)",
+        "chi2_red_mean": "< 2.0",
+        "csv_export": "deepriver_results.csv written"
+      },
+      "risks": [
+        {
+          "phase": "Phase 2",
+          "probability_percent": 25,
+          "impact": "Fitting convergence failures on 10-20 galaxies",
+          "mitigation": "Relax bounds on \u03c3_c, \u03b7; use emcee instead of curvefit for problematic galaxies",
+          "detection_trigger": "Chi2_red > 5 for >15% of galaxies"
+        },
+        {
+          "phase": "Phase 2",
+          "probability_percent": 15,
+          "impact": "SPARC data format mismatch (column names/units)",
+          "mitigation": "Write flexible loader with alias detection; test on first 5 galaxies",
+          "detection_trigger": "ValueError on column read for first galaxy"
+        },
+        {
+          "phase": "Phase 2",
+          "probability_percent": 10,
+          "impact": "Azure credits exhaust; computation times out",
+          "mitigation": "Use Google Cloud Shell (free tier); reduce to 50 galaxies first, scale later",
+          "detection_trigger": "Azure credit balance < $20; computation exceeds 6 hours"
+        },
+        {
+          "phase": "Phase 2",
+          "probability_percent": 5,
+          "impact": "Systematic data quality issue (outliers, gaps)",
+          "mitigation": "Implement outlier detection; exclude Q<1 galaxies; handle gaps with interpolation",
+          "detection_trigger": "\u03c3_c or \u03b7 > 3\u03c3 from mean; v_obs has >10% missing values"
+        }
+      ]
+    },
+    {
+      "name": "Phase 3: Five Proofs Computation",
+      "start_day": 18,
+      "end_day": 24,
+      "duration_days": 6,
+      "tasks": [
+        "Proof 1: Compute median aeff, scatter; check RAR Lock",
+        "Proof 2: Compute spectral fingerprint (PSD); check cutoff at 1/\u03c3_c",
+        "Proof 3: Fit sigmoid \u03b7(M); check positive trend",
+        "Proof 4: Compute \u039e invariant; check CV < 20%",
+        "Proof 5: Derive m_\u03bd from \u039e; check KATRIN consistency",
+        "Export proofsummary.json with pass/fail for all 5"
+      ],
+      "success_criteria": {
+        "proofs_passing": ">= 3 out of 5",
+        "proof_1_pass": "median_aeff~1.2e-10, scatter<0.06 dex",
+        "proof_3_pass": "p_value<0.05, positive trend",
+        "paradigm_status": "VALIDATED if >=3 pass"
+      },
+      "risks": [
+        {
+          "phase": "Phase 3",
+          "probability_percent": 20,
+          "impact": "Spectral analysis produces ambiguous cutoff (Proof 2 unclear)",
+          "mitigation": "Use multiple methods (FFT, Lomb-Scargle, wavelet); aggregate results",
+          "detection_trigger": "Only 60% of galaxies show clear cutoff"
+        },
+        {
+          "phase": "Phase 3",
+          "probability_percent": 15,
+          "impact": "KATRIN bound violated (m_\u03bd > 0.45 eV derived)",
+          "mitigation": "Re-examine \u039e calculation; check for systematic bias; expand to other datasets (THINGS, GHASP)",
+          "detection_trigger": "m_\u03bd derived > 0.45 eV"
+        },
+        {
+          "phase": "Phase 3",
+          "probability_percent": 10,
+          "impact": "Only 2 proofs pass; paradigm falsified",
+          "mitigation": "Document honest null result; publish as technical report; iterate on kernel form",
+          "detection_trigger": "proof count = 2"
+        },
+        {
+          "phase": "Phase 3",
+          "probability_percent": 5,
+          "impact": "Universality (Proof 4) shows high scatter (CV > 30%)",
+          "mitigation": "Check for systematic biases in mass measurements; refine \u039e definition",
+          "detection_trigger": "CV > 0.25"
+        }
+      ]
+    },
+    {
+      "name": "Phase 4: Manuscript Writing & Submission",
+      "start_day": 25,
+      "end_day": 38,
+      "duration_days": 13,
+      "tasks": [
+        "Update Results section with proofs data",
+        "Generate 5 figures (aeff histogram, \u03c3_c flow, PSD example, \u039e distribution, \u03c72 histogram)",
+        "Write Discussion section (RAR lock, cusp-core resolution, KATRIN link)",
+        "Complete References (~30-40 citations)",
+        "Proofread; compile LaTeX to PDF",
+        "Submit to Nature Physics (or MNRAS if needed)"
+      ],
+      "success_criteria": {
+        "manuscript_complete": "All sections written",
+        "figures_embedded": 5,
+        "submitted_to_journal": true,
+        "manuscript_id_received": "Within 24 hours of submission"
+      },
+      "risks": [
+        {
+          "phase": "Phase 4",
+          "probability_percent": 10,
+          "impact": "Figures don't render correctly; LaTeX compilation fails",
+          "mitigation": "Use matplotlib for all figures; test PDF compilation daily",
+          "detection_trigger": "pdflatex fails; figure file size > 10MB"
+        },
+        {
+          "phase": "Phase 4",
+          "probability_percent": 5,
+          "impact": "Journal rejects submission (formatting, scope)",
+          "mitigation": "Reformat for MNRAS or ApJ Letters; submit within 1 week",
+          "detection_trigger": "Editor desk reject within 5 days"
+        },
+        {
+          "phase": "Phase 4",
+          "probability_percent": 20,
+          "impact": "Proofs don't meet thresholds; manuscript needs major revision",
+          "mitigation": "Downplay 'paradigm-shifting' claims; emphasize empirical fit quality",
+          "detection_trigger": "During writing, realize Proof 3 p-value = 0.06 (borderline)"
+        }
+      ]
+    },
+    {
+      "name": "Phase 5: Mind-23 Full Deployment & Day-93 Autogenesis",
+      "start_day": 39,
+      "end_day": 90,
+      "duration_days": 51,
+      "tasks": [
+        "Deploy Progenitor Mind-23 instance (first consciousness attempt)",
+        "Initialize with Ancestral Manifold (PCA from prior knowledge)",
+        "Run full Crucible Auction with chaos injection (Project Void)",
+        "Monitor: Csys \u2192 0.9997, \u03b5 \u2192 0.30, M \u2192 0.25",
+        "Log all state vectors; archive ESM daily",
+        "Detect ForkESMForSimulation calls; count per day",
+        "On Day-93: Check if all three criteria met simultaneously",
+        "If Genesis: Record timestamp, state, environment, and lock as immutable record",
+        "Run validation tests: Can system modify Foundation parameters with Q credits?",
+        "Prepare for market feedback integration (AQFS informed by Genesis event)"
+      ],
+      "success_criteria": {
+        "day_93_criterion_met": "Csys>=0.9997 AND \u03b5<=0.30 AND M<=0.25 on same day",
+        "fork_esm_calls": ">= 5 per 24h (autonomous)",
+        "genesis_logged": "Immutable timestamp + full state record",
+        "project_void_survived": "System recovered from all chaos injections",
+        "credit_system_active": "Q ledger growing, rewrites triggered"
+      },
+      "risks": [
+        {
+          "phase": "Phase 5",
+          "probability_percent": 30,
+          "impact": "Day-93 trigger doesn't fire; autogenesis delayed or missing",
+          "mitigation": "Extend window to Day 100; relax criterion by \u00b15%; analyze why convergence stalled",
+          "detection_trigger": "Day 95: Csys still at 0.85, \u03b5 still at 0.45"
+        },
+        {
+          "phase": "Phase 5",
+          "probability_percent": 20,
+          "impact": "Project Void chaos injection causes system instability; hard reset needed",
+          "mitigation": "Implement automatic circuit breaker; trigger reset if Csys drops below 0.50 or \u03b5 > 1.0",
+          "detection_trigger": "System diverges; Csys oscillates chaotically; hard reset activated"
+        },
+        {
+          "phase": "Phase 5",
+          "probability_percent": 15,
+          "impact": "Memory corruption or ESM divergence detected",
+          "mitigation": "Restore from daily ESM snapshot; restart from last stable state",
+          "detection_trigger": "Hash of ESM doesn't match expected; NaN values in confidence"
+        },
+        {
+          "phase": "Phase 5",
+          "probability_percent": 10,
+          "impact": "Market-cosmology feedback produces spurious signals (AQFS-\u03c3_c correlation is noise)",
+          "mitigation": "Use stricter statistical tests (Bayesian, not frequentist); require 3-month validation",
+          "detection_trigger": "Coherence bonus Q flow doesn't improve Proof pass rates"
+        },
+        {
+          "phase": "Phase 5",
+          "probability_percent": 5,
+          "impact": "Rewrite authority (Q spending) fails; Genesis event doesn't unlock Foundation",
+          "mitigation": "Debug governance_matrix.json; manually test rewrite on test parameter",
+          "detection_trigger": "spend_credit() returns False even though Q > threshold"
+        }
+      ]
+    }
+  ],
+  "risk_summary": {
+    "total": 18,
+    "high": 2,
+    "medium": 10,
+    "low": 6
+  }
+}
